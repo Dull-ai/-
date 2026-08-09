@@ -1,0 +1,24 @@
+package com.hmdp.utils;
+
+import com.hmdp.dto.UserDTO;
+import org.springframework.lang.Nullable;
+import org.springframework.web.servlet.HandlerInterceptor;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+public class UserHolder{
+    private static final ThreadLocal<UserDTO> tl = new ThreadLocal<>();
+    public static void saveUser(UserDTO user){
+        tl.set(user);
+    }
+
+    public static UserDTO getUser(){
+        return tl.get();
+    }
+
+    public static void removeUser(){
+        tl.remove();
+    }
+}
